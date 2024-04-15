@@ -28,7 +28,9 @@ jobs:
         run: ls
           
       - name: Navigate to Playwright directory
-        run: cd playwright/
+        run: | 
+          cd playwright/
+          ls
 
       - name: log
         run: ls
