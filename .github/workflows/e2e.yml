@@ -24,6 +24,9 @@ jobs:
       - name: Checkout Test Repo
         uses: actions/checkout@v4
 
+      - name: log
+        run: ls
+
       - name: Use NodeJS 20
         if: success()
         uses: actions/setup-node@v4
