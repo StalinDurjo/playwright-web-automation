@@ -23,30 +23,9 @@ jobs:
     steps:
       - name: Checkout Test Repo
         uses: actions/checkout@v4
-        
-      - working-directory: playwright
-        run: ls
-
-      - name: log
-        run: ls
-          
-      - name: Navigate to Playwright directory
-        run: | 
-          cd playwright/
-          ls
- 
-      - name: log
-        run: ls
-
-      - name: Use NodeJS 20
-        if: success()
-        uses: actions/setup-node@v4
-        with: 
-          node-version: 20
-          cache: npm
 
       - name: Install Playwright Dependencies
         if: success()
-        run: |
-          ls
-          npm ci || npm i
+        working-directory: playwright
+        run: npm install
+
