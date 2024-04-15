@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@v4
         
       - working-directory: playwright
+        run: ls
 
       - name: log
         run: ls
