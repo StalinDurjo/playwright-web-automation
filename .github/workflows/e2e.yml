@@ -25,7 +25,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: log
-        run: ls
+        run: | 
+          ls || cd playwright
 
       - name: Use NodeJS 20
         if: success()
