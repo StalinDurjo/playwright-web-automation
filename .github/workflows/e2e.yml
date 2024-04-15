@@ -26,7 +26,7 @@ jobs:
 
       - name: log
         run: | 
-          ls || cd playwright
+          cd playwright
 
       - name: Use NodeJS 20
         if: success()
