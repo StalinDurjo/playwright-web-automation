@@ -34,4 +34,5 @@ jobs:
       - name: Install Playwright Dependencies
         if: success()
         run: |
+          echo ls
           npm ci || npm i
