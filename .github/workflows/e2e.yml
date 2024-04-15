@@ -30,6 +30,9 @@ jobs:
       - name: Navigate to Playwright directory
         run: cd playwright/
 
+      - name: log
+        run: ls
+
       - name: Use NodeJS 20
         if: success()
         uses: actions/setup-node@v4
