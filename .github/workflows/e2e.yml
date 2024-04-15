@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout Test Repo
         uses: actions/checkout@v4
+        
+      - working-directory: playwright
 
       - name: log
         run: ls
