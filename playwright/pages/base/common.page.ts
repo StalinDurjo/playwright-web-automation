@@ -17,10 +17,6 @@ export default class CommonPage {
   }
 
   // action
-  async goto(url: string) {
-    await this.page.goto(`http://localhost:9999${url}`);
-  }
-
   async clickOnLogin() {
     await this.button("Log In").click();
   }
