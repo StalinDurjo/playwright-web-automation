@@ -1,0 +1,18 @@
+import BasePage from "@pages/base/base.page";
+import { Page } from "@playwright/test";
+
+const selectors = {
+  blockPostTitle: '//h1[contains(@class, "wp-block-post-title")]'
+};
+
+export default class PageView extends BasePage {
+  constructor(page: Page) {
+    super(page);
+    this.page = page;
+  }
+
+  // arrange
+  blockPostTitle() {
+    return this.page.locator(selectors.blockPostTitle);
+  }
+}
