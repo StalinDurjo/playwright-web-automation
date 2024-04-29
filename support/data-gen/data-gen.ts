@@ -1,5 +1,5 @@
 import { DataGenMode } from "support/types/global";
-import ApiDataGen from "./api-data";
+import ApiData from "./api-data";
 import DataConfig from "./data-config";
 
 export default class DataGen {
@@ -7,17 +7,17 @@ export default class DataGen {
   private mode: DataGenMode;
   private basicAuthUsername: string;
   private basicAuthPassword: string;
-  private apiDataGen: ApiDataGen;
+  readonly api: ApiData;
   private dataConfig: DataConfig;
 
   constructor() {
-    this.apiDataGen = new ApiDataGen();
+    this.api = new ApiData();
     this.dataConfig = new DataConfig();
   }
 
   setBaseUrl(baseUrl: string) {
     this.baseUrl = baseUrl;
-    this.apiDataGen.setBaseUrl(this.baseUrl);
+    this.api.setBaseUrl(this.baseUrl);
   }
 
   useMode(mode: DataGenMode) {
@@ -30,13 +30,11 @@ export default class DataGen {
   }
 
   async createProducts() {
-    const formDataList = await this.dataConfig.productsFormData();
+    const formDataList = await this.dataConfig.productsSeedData({ include: [], exclude: [] });
 
     if (this.mode === "API") {
-      this.apiDataGen.setBasicAuth(this.basicAuthUsername, this.basicAuthPassword);
-
       for (const formData of formDataList) {
-        await this.apiDataGen.createProduct(formData, { credentials: { username: this.basicAuthUsername, password: this.basicAuthPassword } });
+        await this.api.createProduct(formData, { credentials: { username: this.basicAuthUsername, password: this.basicAuthPassword } });
       }
     }
   }
