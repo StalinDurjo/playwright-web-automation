@@ -34,7 +34,8 @@ export default class DataGen {
 
     if (this.mode === "API") {
       for (const formData of formDataList) {
-        await this.api.createProduct(formData, { credentials: { username: this.basicAuthUsername, password: this.basicAuthPassword } });
+        this.api.setBasicAuth(this.basicAuthUsername, this.basicAuthPassword);
+        await this.api.createProduct(formData);
       }
     }
   }

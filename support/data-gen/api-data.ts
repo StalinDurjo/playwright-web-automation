@@ -34,10 +34,9 @@ export default class ApiData {
     this.request.setContentType(contentType);
   }
 
-  async createProduct(requestBody: FormData, { credentials: { username, password } }) {
+  async createProduct(requestBody: FormData) {
     try {
       this.setContentType("multipart/form-data");
-      this.setBasicAuth(username, password);
       const response = await this.request.post(`${this.baseUrl}/wp-json/wc/v3/products`, requestBody);
       return await response.data;
     } catch (error) {
