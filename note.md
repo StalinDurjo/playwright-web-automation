@@ -47,3 +47,13 @@ Shipping and Tax Calculation:
 ## Utility Tasks
 
 - [UI] Change Permalink
+
+===================================================
+
+## Factory Design Pattern for creating task sequence
+
+- implement builder design pattern
+- add task
+- check if task is for UI or API
+- perform authentication
+- if UI, and has 2 tasks in sequence keep login session

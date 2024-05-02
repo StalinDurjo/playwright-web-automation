@@ -1,6 +1,6 @@
 import { test, expect } from "@pages/base/fixtures";
 import { request } from "@playwright/test";
-import requestUtils from "utils/requests/RequestUtils";
+import requestUtils from "support/utils/requests/RequestUtils";
 
 let pageId: number;
 

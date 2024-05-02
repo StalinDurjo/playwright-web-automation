@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from "axios";
+import { ContentType } from "support/types/global";
 
 export default class Request {
   private instance: AxiosInstance;
@@ -13,6 +14,10 @@ export default class Request {
 
   setBasicAuth(username: string, password: string) {
     this.instance.defaults.headers.common["Authorization"] = `Basic ${btoa(`${username}:${password}`)}`;
+  }
+
+  setContentType(contentType: ContentType) {
+    this.instance.defaults.headers.common["Content-Type"] = contentType;
   }
 
   get(requestPath: string, queryString: string = "") {
