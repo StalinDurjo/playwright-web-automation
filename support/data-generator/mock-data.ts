@@ -1,8 +1,7 @@
+import { Mode } from "support/types/global";
 import WoocommerceMockApi from "./api/wc-mock-api";
 import WordpressMockApi from "./api/wp-mock-api";
 import Configurator from "./configurator";
-
-type Mode = "API" | "UI";
 
 export default class MockData {
   private baseUrl: string;
