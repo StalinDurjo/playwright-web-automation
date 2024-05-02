@@ -29,15 +29,16 @@ export default class MockData {
     this.password = password;
   }
 
-  async createProducts() {
+  async createProducts({ limit }: { limit?: number } = {}) {
     try {
-      const formData = await this.configurator.getFormData("sample.products", { include: ["type", "description", "name"], exclude: ["name"] });
-      console.log(formData[0]);
+      const formData = await this.configurator.getFormData("_products", { include: ["name", "type"] });
+      const limitedFormData = limit || limit === 0 ? formData.splice(0, limit) : formData;
+
       if (this.mode === "API") {
-        for (const form of formData) {
+        for (const form of limitedFormData) {
           this.woocommerceApi.setBaseUrl(this.baseUrl);
           this.woocommerceApi.setBasicAuth(this.username, this.password);
-          // this.woocommerceApi.createProduct(form);
+          this.woocommerceApi.createProduct(form);
         }
       }
     } catch (error) {
