@@ -11,5 +11,6 @@ import EnvironmentUtility from "support/environment-utility/environment-utility"
 
   const envUtility = new EnvironmentUtility({ baseUrl: "http://localhost:9999/" });
   envUtility.useMode("API");
-  envUtility.woocommerce.enableTax(true);
+  envUtility.setBasicAuth("admin", "password");
+  envUtility.woocommerce.enableTax(false);
 })();

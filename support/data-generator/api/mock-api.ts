@@ -1,4 +1,4 @@
-import { ContentType } from "support/types/global";
+import { ContentType, MockUtilityDefault } from "support/types/global";
 import Request from "support/utils/requests/request";
 
 export default class MockApi {
