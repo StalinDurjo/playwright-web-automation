@@ -1,16 +1,11 @@
-import { ContentType, MockUtilityDefault } from "support/types/global";
+import { ContentType } from "support/types/global";
 import Request from "support/utils/requests/request";
 
-export default class MockApi {
-  baseUrl: string;
-  request: Request;
+export default class MockApiUtil {
+  protected request: Request;
 
   constructor() {
     this.request = new Request();
-  }
-
-  setBaseUrl(baseUrl: string) {
-    this.baseUrl = baseUrl;
   }
 
   setBasicAuth(username: string, password: string) {
