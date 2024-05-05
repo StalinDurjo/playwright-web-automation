@@ -1,22 +1,17 @@
 import { Mode } from "support/types/global";
-import WoocommerceMockApi from "./api/wc-mock-api";
-import WordpressMockApi from "./api/wp-mock-api";
 import Configurator from "./configurator";
+import WoocommerceMockDataApi from "./api/woocommerce-api-util";
 
 export default class MockData {
   private baseUrl: string;
-  private username: string;
-  private password: string;
   private mode: Mode;
   private configurator: Configurator;
-  private wordpressApi: WordpressMockApi;
-  private woocommerceApi: WoocommerceMockApi;
+  private woocommerceDataApi: WoocommerceMockDataApi;
 
   constructor({ baseUrl }: { baseUrl: string }) {
     this.baseUrl = baseUrl;
-    this.wordpressApi = new WordpressMockApi();
-    this.woocommerceApi = new WoocommerceMockApi();
     this.configurator = new Configurator();
+    this.woocommerceDataApi = new WoocommerceMockDataApi({ baseUrl: this.baseUrl });
   }
 
   useMode(mode: Mode) {
@@ -24,8 +19,7 @@ export default class MockData {
   }
 
   setBasicAuth(username: string, password: string) {
-    this.username = username;
-    this.password = password;
+    this.woocommerceDataApi.setBasicAuth(username, password);
   }
 
   async createProducts({ limit }: { limit?: number } = {}) {
@@ -47,13 +41,11 @@ export default class MockData {
         ]
       });
       const limitedFormData = limit || limit === 0 ? formData.splice(0, limit) : formData;
-      console.log(limitedFormData[1]);
 
       if (this.mode === "API") {
         for (const form of limitedFormData) {
-          this.woocommerceApi.setBaseUrl(this.baseUrl);
-          this.woocommerceApi.setBasicAuth(this.username, this.password);
-          this.woocommerceApi.createProduct(form);
+          this.woocommerceDataApi.setContentType("multipart/form-data");
+          await this.woocommerceDataApi.createProduct(form);
         }
       }
     } catch (error) {
