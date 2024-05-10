@@ -4,7 +4,7 @@ import requestUtils from "support/utils/requests/RequestUtils";
 
 let pageId: number;
 
-test.describe.only("Pages", async () => {
+test.describe("Pages", async () => {
   test.beforeEach(async ({ wpAdminPage, pageActions }) => {
     await wpAdminPage.login.goto();
     await pageActions.wordpress.login("admin", "password");

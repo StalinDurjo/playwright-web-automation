@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import CommonPage from "../../../pages/base/common.page";
-import WpAdminPage from "../../../pages/wp-admin/wp-admin.page";
+import CommonPage from "../../pages/base/common.page";
+import WpAdminPage from "../../pages/wp-admin/wp-admin.page";
 import WpLoginPage from "@pages/wp-admin/auth/login.page";
 
 type PermalinkStructure = {
