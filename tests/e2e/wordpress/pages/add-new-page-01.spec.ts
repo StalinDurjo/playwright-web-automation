@@ -1,21 +1,22 @@
 import { test, expect } from "@pages/base/fixtures";
 import { request } from "@playwright/test";
-import requestUtils from "support/utils/requests/RequestUtils";
+import RequestUtils from "support/utils/requests/request-actions";
 
 let pageId: number;
+let requestUtils: RequestUtils;
 
 test.describe("Pages", async () => {
-  test.beforeEach(async ({ wpAdminPage, pageActions }) => {
+  test.beforeEach(async ({ wpAdminPage, pageActions }, testInfo) => {
+    requestUtils = new RequestUtils({ baseUrl: testInfo.project.use.baseURL });
     await wpAdminPage.login.goto();
     await pageActions.wordpress.login("admin", "password");
   });
 
   test.afterEach(async ({ page }) => {
     await requestUtils.deletePage(pageId);
-    // await page.waitForTimeout(5000);
   });
 
-  test("Admin can create a new page", async ({ page, request, wpAdminPage, wpFrontendPage }) => {
+  test("Admin can create a new page", async ({ page, wpAdminPage, wpFrontendPage }) => {
     await wpAdminPage.pages.allPages.goto();
     await wpAdminPage.pages.allPages.clickOnAddNewPage();
 
@@ -26,7 +27,7 @@ test.describe("Pages", async () => {
       await wpAdminPage.pages.addPage.blockEditor.closeComponentModal();
     }
 
-    const pageTitle = "Test Page 1";
+    const pageTitle = "Test Page";
 
     await wpAdminPage.pages.addPage.blockEditor.enterPostTitle(pageTitle);
     await wpAdminPage.pages.addPage.blockEditor.clickOnPublishButton();

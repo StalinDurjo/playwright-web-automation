@@ -1,5 +1,9 @@
 import { Page } from "@playwright/test";
 
+const selectors = {
+  pageTitleActionLink: "page-title-action"
+};
+
 export default class BasePage {
   protected page: Page;
   protected url: string;
@@ -16,6 +20,10 @@ export default class BasePage {
 
   submit(title: string) {
     return this.page.locator("#submit").and(this.page.getByText(title));
+  }
+
+  pageTitleAction(title: string) {
+    return this.page.locator(`.${selectors.pageTitleActionLink}`).and(this.page.getByText(title));
   }
 
   // action

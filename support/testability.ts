@@ -1,4 +1,4 @@
-import RestUtils from "./rest-utils";
+import RestUtils from "./utils/requests/rest-utils";
 import SimpleScore from "./utils/simple-score";
 import dotenv from "dotenv";
 dotenv.config();

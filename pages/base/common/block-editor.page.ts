@@ -5,7 +5,8 @@ const selectors = {
   componentModalCloseButton: '//div[@class="components-modal__header"]/button',
   publishButton: '(//button[text()="Publish"])[1]',
   publishConfirmButton: '(//button[text()="Publish"])[2]',
-  publishViewPageButton: '//div[contains(@class, "post-publish-panel__postpublish-buttons")]/a[text()="View Page"]'
+  publishViewPageButton: '//div[contains(@class, "post-publish-panel__postpublish-buttons")]/a[text()="View Page"]',
+  publishViewPostButton: '//div[contains(@class, "post-publish-panel__postpublish-buttons")]/a[text()="View Post"]'
 };
 
 export default class BlockEditorPage {
@@ -30,6 +31,10 @@ export default class BlockEditorPage {
 
   viewPageLink() {
     return this.page.locator(selectors.publishViewPageButton);
+  }
+
+  viewPostLink() {
+    return this.page.locator(selectors.publishViewPostButton);
   }
 
   async componentModalCloseButton() {
@@ -61,5 +66,9 @@ export default class BlockEditorPage {
 
   async clickOnViewPageLink() {
     await this.viewPageLink().click();
+  }
+
+  async clickOnViewPostLink() {
+    await this.viewPostLink().click();
   }
 }
