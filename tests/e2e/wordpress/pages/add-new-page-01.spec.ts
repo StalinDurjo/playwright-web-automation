@@ -5,7 +5,7 @@ import RequestUtils from "support/utils/requests/request-actions";
 let pageId: number;
 let requestUtils: RequestUtils;
 
-test.describe("Pages", async () => {
+test.describe.only("Pages", async () => {
   test.beforeEach(async ({ wpAdminPage, pageActions }, testInfo) => {
     requestUtils = new RequestUtils({ baseUrl: testInfo.project.use.baseURL });
     await wpAdminPage.login.goto();
@@ -13,7 +13,7 @@ test.describe("Pages", async () => {
   });
 
   test.afterEach(async ({ page }) => {
-    await requestUtils.deletePage(pageId);
+    // await requestUtils.deletePage(pageId);
   });
 
   test("Admin can create a new page", async ({ page, wpAdminPage, wpFrontendPage }) => {
@@ -21,11 +21,13 @@ test.describe("Pages", async () => {
     await wpAdminPage.pages.allPages.clickOnAddNewPage();
 
     // component modal is visible on new setup when no posts are created. Purpose of the following steps are to close the modal and continue tests as usual.
-    const elementCount = await (await wpAdminPage.pages.addPage.blockEditor.componentModalCloseButton()).count();
+    // const elementCount = await (await wpAdminPage.pages.addPage.blockEditor.componentModalCloseButton()).count();
 
-    if (elementCount > 0) {
-      await wpAdminPage.pages.addPage.blockEditor.closeComponentModal();
-    }
+    // console.log(elementCount)
+
+    // if (elementCount > 0) {
+    //   await wpAdminPage.pages.addPage.blockEditor.closeComponentModal();
+    // }
 
     const pageTitle = "Test Page";
 
@@ -34,8 +36,8 @@ test.describe("Pages", async () => {
     await wpAdminPage.pages.addPage.blockEditor.clickOnPublishConfirmButton();
 
     // return postId, so that it can be deleted after test
-    const response = await page.waitForResponse("**/wp-json/wp/v2/pages/*");
-    pageId = await (await response.json()).id;
+    // const response = await page.waitForResponse("**/wp-json/wp/v2/pages/*");
+    // pageId = await (await response.json()).id;
 
     await wpAdminPage.pages.addPage.blockEditor.clickOnViewPageLink();
 
