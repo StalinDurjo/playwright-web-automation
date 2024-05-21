@@ -2,7 +2,7 @@ import BasePage from "@pages/base/base.page";
 import { Page } from "@playwright/test";
 
 const selectors = {
-  blockPostTitle: '//h1[contains(@class, "wp-block-post-title")]'
+  blockPostTitle: '//h1[contains(@class, "entry-title")]'
 };
 
 export default class PageView extends BasePage {

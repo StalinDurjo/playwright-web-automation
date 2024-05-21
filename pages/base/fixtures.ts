@@ -1,8 +1,8 @@
 import { test as base } from "@playwright/test";
 import WpAdminPage from "../wp-admin/wp-admin.page";
 import CommonPage from "./common.page";
-import PageActions from "../../support/utils/page-actions/page-actions";
 import WpFrontendPage from "@pages/wp-frontend/wp-frontend.page";
+import PageActions from "support/page-actions/page-actions";
 
 export const test = base.extend<{
   commonPage: CommonPage;
