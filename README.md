@@ -1,2 +1,2 @@
-# playwright-automation-ci
+# playwright-web-automation
 ## Work In Progress
